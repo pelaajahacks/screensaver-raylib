@@ -21,15 +21,12 @@ jobs:
             libxinerama-dev libxi-dev \
             libgl1-mesa-dev libasound2-dev
 
-      - name: Build and install raylib
+      - name: Build raylib
         run: |
           git clone --depth=1 https://github.com/raysan5/raylib.git
-          cd raylib
-          cmake -S . -B build -G Ninja \
-            -DCMAKE_BUILD_TYPE=Release \
-            -DBUILD_SHARED_LIBS=ON
-          cmake --build build
-          sudo cmake --install build
+          cmake -S raylib -B raylib/build -G Ninja
+          cmake --build raylib/build
+          sudo cmake --install raylib/build
       - name: Configure
         run: |
           cmake -S . -B build -G Ninja \
