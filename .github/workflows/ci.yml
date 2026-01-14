@@ -1,0 +1,33 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install deps
+        run: sudo apt update && sudo apt install -y clang cmake ninja-build
+
+
+      - name: Install Raylib
+        run: sudo apt install -y libraylib-dev
+
+      - name: Configure
+        run: |
+          cmake -S . -B build -G Ninja \
+            -DCMAKE_C_COMPILER=clang \
+            -DCMAKE_CXX_COMPILER=clang++
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-clang-build
+          path: build/
+
