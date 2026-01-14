@@ -12,10 +12,24 @@ jobs:
       - name: Install deps
         run: sudo apt update && sudo apt install -y clang cmake ninja-build
 
+      - name: Install raylib dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y \
+            clang cmake ninja-build \
+            libx11-dev libxcursor-dev libxrandr-dev \
+            libxinerama-dev libxi-dev \
+            libgl1-mesa-dev libasound2-dev
 
-      - name: Install Raylib
-        run: sudo apt install -y libraylib-dev
-
+      - name: Build and install raylib
+        run: |
+          git clone --depth=1 https://github.com/raysan5/raylib.git
+          cd raylib
+          cmake -S . -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=ON
+          cmake --build build
+          sudo cmake --install build
       - name: Configure
         run: |
           cmake -S . -B build -G Ninja \
