@@ -1,3 +1,0 @@
-/home/roni/Documents/Code/C++/raylibauspaska/vektooor/build/CMakeFiles/raylib_app.dir
-/home/roni/Documents/Code/C++/raylibauspaska/vektooor/build/CMakeFiles/edit_cache.dir
-/home/roni/Documents/Code/C++/raylibauspaska/vektooor/build/CMakeFiles/rebuild_cache.dir
