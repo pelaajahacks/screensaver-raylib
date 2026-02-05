@@ -7,6 +7,8 @@ set(CMAKE_C_COMPILER clang)
 
 # Find Raylib system package
 find_package(raylib REQUIRED)
+find_package(SQLite3 REQUIRED)
+
 
 # Project sources
 file(GLOB SOURCES "src/*.cpp")
@@ -20,5 +22,7 @@ target_include_directories(screensaver PRIVATE
     libs                     # contains raygui.h
 )
 
+
 # Link Raylib
 target_link_libraries(screensaver PRIVATE raylib)
+target_link_libraries(screensaver PRIVATE SQLite::SQLite3)
